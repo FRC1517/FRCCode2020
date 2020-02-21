@@ -18,6 +18,7 @@ public class IntakeCommand extends Command {
 	protected void initialize() {
 		Robot.IntakeSub.Up();
 	}
+	
     @Override
     protected void execute() {
 		Robot.IntakeSub.Turn(Robot.oi.getXbox2().getY(Hand.kLeft));
