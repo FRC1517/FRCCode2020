@@ -24,13 +24,13 @@ public class RobotMap {
 	
 	public static final int xbox1 = 0;			//Drive Contoller
 	public static final int xbox2 = 1;		    //Auxillary Controller
-    public static final int RFSpark = 1;
-    public static final int RBSpark = 2;
-    public static final int LFSpark = 3;
-	public static final int LBSpark = 4;
+    public static final int LFSpark = 1;
+    public static final int LBSpark = 2;
+    public static final int RFSpark = 3;
+	public static final int RBSpark = 4;
 	
 	public static final int intakeM = 5;
-	public static final int shooterM = 6;
+	public static final int shooterM = 8;
 	public static final int indexM = 7;
 
 	//Pnuematics

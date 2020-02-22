@@ -21,7 +21,6 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.Solenoid;
 
@@ -103,16 +102,16 @@ public class DriveTrainSubsystem extends Subsystem {
     public void switchGear() {
         if (gearNum == 0) {
             gear.set(true);
-            // gear.set(Value.kForward);
-            // gear.set(Value.kOff);
             gearNum = 1;
         }
         else if (gearNum == 1) {
             gear.set(false);
-            // gear.set(Value.kReverse);
-            // gear.set(Value.kOff);
             gearNum = 0;
         }
+    }
+
+    public void switchGear2() {
+        gear.set(true);
     }
 
     @Override

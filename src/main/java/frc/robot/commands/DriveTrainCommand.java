@@ -22,9 +22,11 @@ public class DriveTrainCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.DriveSub.arcadeDrive(-Robot.oi.getXbox1().getY(Hand.kLeft), -Robot.oi.getXbox1().getX(Hand.kLeft));
-        if (Robot.oi.getXbox2().getBumperPressed(Hand.kLeft))
+    	Robot.DriveSub.arcadeDrive(Robot.oi.getXbox1().getY(Hand.kLeft), Robot.oi.getXbox1().getX(Hand.kLeft));
+        if (Robot.oi.getXbox1().getBumperPressed(Hand.kRight))
             Robot.DriveSub.switchGear();
+        while (Robot.oi.getXbox1().getBumperPressed(Hand.kLeft))
+            Robot.DriveSub.switchGear2();
     }
 
     // Make this return true when this Command no longer needs to run execute()

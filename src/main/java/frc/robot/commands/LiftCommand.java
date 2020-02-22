@@ -18,6 +18,7 @@ public class LiftCommand extends Command {
 	protected void initialize() {
 		Robot.LiftSub.Down();
 	}
+	
     @Override
     protected void execute() {
 		if (Robot.oi.getXbox2().getBumperPressed(Hand.kRight)) {

@@ -1,6 +1,7 @@
 package frc.robot.subsystems;
 
 import frc.robot.RobotMap;
+import frc.robot.Robot;
 import frc.robot.commands.IntakeCommand;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
@@ -20,6 +21,7 @@ public class IntakeSubsystem extends Subsystem {
         ArmOne = new DoubleSolenoid(RobotMap.PCM, RobotMap.ArmDoubleA, RobotMap.ArmDoubleB);
         ArmTwo = new Solenoid(RobotMap.ArmB);
         intakeMotor = new WPI_TalonSRX(RobotMap.intakeM);
+
     }
 
     public void Up() {
@@ -36,6 +38,19 @@ public class IntakeSubsystem extends Subsystem {
         ArmOne.set(Value.kReverse);
         ArmTwo.set(false);
     }
+
+    // public void GoTo() {
+    //     if (Robot.potentiometer.get() < 2.5) {
+    //         while (Robot.potentiometer.get() < 2.5) 
+    //             Up();
+                
+    //     }
+    //     else if (Robot.potentiometer.get() > 2.5) {
+    //         while (Robot.potentiometer.get() > 2.5 )
+    //             Down();
+    //     }
+    //     Hold();
+    // }
 
     public void Turn(double x) {
 		intakeMotor.set(x);
