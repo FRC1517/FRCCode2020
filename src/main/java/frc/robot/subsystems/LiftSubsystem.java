@@ -3,25 +3,22 @@ package frc.robot.subsystems;
 import frc.robot.RobotMap;
 import frc.robot.commands.LiftCommand;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class LiftSubsystem extends Subsystem {
-    DoubleSolenoid LiftDouble;
+    Solenoid LiftSolenoid;
 
     public LiftSubsystem() {
-        LiftDouble = new DoubleSolenoid(RobotMap.Lift, 3, 4);
+        LiftSolenoid = new Solenoid(RobotMap.Lift);
     }
 
     public void Up() {
-        LiftDouble.set(Value.kForward);
-        LiftDouble.set(Value.kOff);
+        LiftSolenoid.set(true);
     }
 
     public void Down() {
-        LiftDouble.set(Value.kReverse);
-        LiftDouble.set(Value.kOff);
+        LiftSolenoid.set(false);
     }
 
     @Override

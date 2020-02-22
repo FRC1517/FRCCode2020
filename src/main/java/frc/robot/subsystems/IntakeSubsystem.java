@@ -6,26 +6,35 @@ import frc.robot.commands.IntakeCommand;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class IntakeSubsystem extends Subsystem {
-    Solenoid ArmOne;
+    DoubleSolenoid ArmOne;
     Solenoid ArmTwo;
     WPI_TalonSRX intakeMotor;
 
     public IntakeSubsystem() {
-        ArmOne = new Solenoid(RobotMap.ArmA);
+        ArmOne = new DoubleSolenoid(RobotMap.PCM, RobotMap.ArmDoubleA, RobotMap.ArmDoubleB);
         ArmTwo = new Solenoid(RobotMap.ArmB);
         intakeMotor = new WPI_TalonSRX(RobotMap.intakeM);
     }
 
     public void Up() {
-        ArmOne.set(false);
+        ArmOne.set(Value.kReverse);
         ArmTwo.set(true);
     }
 
     public void Down() {
-        ArmOne.set(true);
+        ArmOne.set(Value.kForward);
+        ArmOne.set(Value.kOff);;
+    }
+
+    public void Hold() {
+        ArmOne.set(Value.kReverse);
+        ArmTwo.set(false);
     }
 
     public void Turn(double x) {

@@ -21,12 +21,12 @@ public class IntakeCommand extends Command {
 	
     @Override
     protected void execute() {
-		Robot.IntakeSub.Turn(Robot.oi.getXbox2().getY(Hand.kLeft));
+		Robot.IntakeSub.Turn(Robot.oi.getXbox1().getY(Hand.kRight));
 		if (Robot.oi.getXbox2().getBButtonPressed()) {
 			Robot.IntakeSub.Down();
 		}
-		else if (Robot.oi.getXbox2().getYButtonPressed()) {
-			Robot.IntakeSub.Up();
+		else if (Robot.oi.getXbox1().getYButtonPressed()) {
+			Robot.IntakeSub.Hold();
 		}
 		
     }

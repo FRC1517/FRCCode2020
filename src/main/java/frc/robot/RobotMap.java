@@ -34,11 +34,12 @@ public class RobotMap {
 	public static final int indexM = 7;
 
 	//Pnuematics
-	public static final int ArmA = 1;			//Initial Solenoid
-	public static final int ArmB = 2;			//Secondary Solenoid
+	public static final int ArmDoubleA = 7;			//Initial Double
+	public static final int ArmDoubleB = 6;
+	public static final int ArmB = 5;			//Secondary Solenoid
 	public static final int Drive = 3;
-	public static final int Lift = 4;
+	public static final int Lift = 2;
 
 	public static final int PDP = 62;
-	public static final int PCM = 61;
+	public static final int PCM = 0;
 }
