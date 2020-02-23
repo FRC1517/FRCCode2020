@@ -33,6 +33,8 @@ public class RobotMap {
 	public static final int shooterM = 8;
 	public static final int indexM = 7;
 
+	public static final int tilterS = 9;
+
 	//Pnuematics
 	public static final int ArmDoubleA = 7;			//Initial Double
 	public static final int ArmDoubleB = 6;

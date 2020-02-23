@@ -1,6 +1,7 @@
 package frc.robot.subsystems;
 
 import frc.robot.RobotMap;
+import frc.robot.Robot;
 import frc.robot.commands.ShooterCommand;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
@@ -15,13 +16,15 @@ import edu.wpi.first.wpilibj.smartdashboard.*;
 public class ShooterSubsystem extends Subsystem {
     CANSparkMax shooterMotor;
     WPI_TalonSRX indexMotor;
-    Servo tilter = new Servo(0);
+    Servo tilter;
 
     public ShooterSubsystem() {
         shooterMotor = new CANSparkMax(RobotMap.shooterM, MotorType.kBrushless);
         shooterMotor.setInverted(true);
 
         indexMotor = new WPI_TalonSRX(RobotMap.indexM);
+
+        tilter = new Servo (RobotMap.tilterS);
 
         shooterMotor.restoreFactoryDefaults();
 
@@ -36,12 +39,13 @@ public class ShooterSubsystem extends Subsystem {
     }
 
     public void tiltUp() {
-        tilter.setAngle(35);
+        tilter.set(0.5);
     }
 
-    public void tiletDown() {
-        tilter.setAngle(135);
+    public void tiltDown() {
+        tilter.set(1.0);
     }
+
 
     @Override
     protected void initDefaultCommand() {
@@ -51,7 +55,11 @@ public class ShooterSubsystem extends Subsystem {
     @Override
     public void periodic() {
         // Put code here to be run every loop
-        
+        if (Robot.oi.getXbox2().getAButton()) {
+            tiltDown();
+            Robot.ShooterSub.shoot(.75);
+            Robot.ShooterSub.index(.75);
+        }
 
 
     }

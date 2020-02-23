@@ -21,8 +21,6 @@ public class IntakeCommand extends Command {
 	
     @Override
     protected void execute() {
-		Robot.IntakeSub.Turn(-Robot.oi.getXbox1().getTriggerAxis(Hand.kLeft));
-		Robot.IntakeSub.Turn(Robot.oi.getXbox1().getTriggerAxis(Hand.kRight));
 		if (Robot.oi.getXbox1().getBButtonPressed()) {
 			Robot.IntakeSub.Down();
 		}
@@ -42,6 +40,9 @@ public class IntakeCommand extends Command {
 		else if (Robot.oi.getXbox1().getAButtonPressed()) {
 			Robot.IntakeSub.Up();
 		}
+		Robot.IntakeSub.Turn(-Robot.oi.getXbox1().getTriggerAxis(Hand.kLeft));
+		Robot.IntakeSub.Turn(Robot.oi.getXbox1().getTriggerAxis(Hand.kRight));
+
     }
     @Override
     protected boolean isFinished() {
