@@ -21,26 +21,27 @@ public class IntakeCommand extends Command {
 	
     @Override
     protected void execute() {
-		Robot.IntakeSub.Turn(Robot.oi.getXbox1().getY(Hand.kRight));
+		Robot.IntakeSub.Turn(-Robot.oi.getXbox1().getTriggerAxis(Hand.kLeft));
+		Robot.IntakeSub.Turn(Robot.oi.getXbox1().getTriggerAxis(Hand.kRight));
 		if (Robot.oi.getXbox1().getBButtonPressed()) {
 			Robot.IntakeSub.Down();
 		}
-		else if (Robot.oi.getXbox1().getYButtonPressed()) {
-			while(!(Robot.pos < 48) && !(Robot.pos > 42)) {
-				if (Robot.pos < 42) {
-					Robot.IntakeSub.Up();
-				}
-				else if (Robot.pos > 48) {
-					Robot.IntakeSub.Down();
-				}	
-			}
-			Robot.IntakeSub.Hold();
+		// else if (Robot.oi.getXbox1().getYButtonPressed()) {
+		// 	while(!(.pos < 54) && !(Robot.pos > 50)) {
+		// 		if (Robot.pos < 50) {
+		// 			Robot.IntakeSub.Up();
+		// 		}
+		// 		else if (Robot.pos > 54) {
+		// 			Robot.IntakeSub.Down();
+		// 		}	
+		// 	}
+		// 	Robot.IntakeSub.Hold();
 			
-			//Robot.IntakeSub.GoTo()
-		}
-		else if (Robot.oi.getXbox1().getXButtonPressed())
+		// 	//Robot.IntakeSub.GoTo()
+		// }
+		else if (Robot.oi.getXbox1().getAButtonPressed()) {
 			Robot.IntakeSub.Up();
-		
+		}
     }
     @Override
     protected boolean isFinished() {

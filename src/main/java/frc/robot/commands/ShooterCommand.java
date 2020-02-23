@@ -23,30 +23,11 @@ public class ShooterCommand extends Command {
     
     @Override
     protected void execute() {
-        Robot.ShooterSub.shoot(Robot.oi.getXbox2().getY(Hand.kRight));
-        Robot.ShooterSub.index(Robot.oi.getXbox2().getY(Hand.kRight)*.25);
-        if (Robot.oi.getXbox2().getYButtonPressed()) {
-            Timer time = new Timer();
-            double currentTime = time.getFPGATimestamp();
-            double markTime = 0;
-            while (!(markTime - 10 > currentTime)) {
-                Robot.ShooterSub.shoot(.75);
-                Timer.delay(.5);
-                Robot.ShooterSub.index(1);
-                markTime = time.getFPGATimestamp();
-            }
-        }
-        while (Robot.oi.getXbox2().getAButtonPressed()){
-            Robot.ShooterSub.shoot(1);
-        }
-        while (Robot.oi.getXbox2().getBButtonPressed()){
-            Robot.ShooterSub.shoot(-1);
-        }
-        while (Robot.oi.getXbox2().getBumperPressed(Hand.kRight)){
-            Robot.ShooterSub.shoot(.25);
-        }
-        while (Robot.oi.getXbox2().getBumperPressed(Hand.kRight)){
-            Robot.ShooterSub.shoot(-.25);
+        Robot.ShooterSub.shoot(Robot.oi.getXbox2().getTriggerAxis(Hand.kRight)*.75);
+        Robot.ShooterSub.index(Robot.oi.getXbox2().getY(Hand.kLeft)*.75);
+        while (Robot.oi.getXbox2().getAButton()) {
+            Robot.ShooterSub.shoot(.75);
+            Robot.ShooterSub.index(.75);
         }
 
     }

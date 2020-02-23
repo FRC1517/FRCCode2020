@@ -1,12 +1,12 @@
 package frc.robot.subsystems;
 
 import frc.robot.RobotMap;
-import frc.robot.Robot;
 import frc.robot.commands.IntakeCommand;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
@@ -16,6 +16,7 @@ public class IntakeSubsystem extends Subsystem {
     DoubleSolenoid ArmOne;
     Solenoid ArmTwo;
     WPI_TalonSRX intakeMotor;
+    int count;
 
     public IntakeSubsystem() {
         ArmOne = new DoubleSolenoid(RobotMap.PCM, RobotMap.ArmDoubleA, RobotMap.ArmDoubleB);
@@ -25,16 +26,18 @@ public class IntakeSubsystem extends Subsystem {
     }
 
     public void Up() {
+        //count = 0;
         ArmOne.set(Value.kReverse);
         ArmTwo.set(true);
     }
 
     public void Down() {
+        //count = 0;
         ArmOne.set(Value.kForward);
-        ArmOne.set(Value.kOff);;
     }
 
     public void Hold() {
+        //count = 0;
         ArmOne.set(Value.kReverse);
         ArmTwo.set(false);
     }
@@ -64,6 +67,9 @@ public class IntakeSubsystem extends Subsystem {
     @Override
     public void periodic() {
         // Put code here to be run every loop
+        // count++;
+        // if (count >= 25)
+        //     ArmOne.set(Value.kOff);
 
     }
 }
