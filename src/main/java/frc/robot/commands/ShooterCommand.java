@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.Timer;
 
 public class ShooterCommand extends Command {
 
+    private int delayCount;
+
 	public ShooterCommand() {
 		super();
 		// Use requires() here to declare subsystem dependencies
@@ -19,17 +21,31 @@ public class ShooterCommand extends Command {
 	@Override
 	protected void initialize() {
         Robot.ShooterSub.tiltUp();
+        delayCount = 0;
     }
     
     @Override
     protected void execute() {
-        Robot.ShooterSub.shoot(Robot.oi.getXbox2().getTriggerAxis(Hand.kRight)*.75);
+        Robot.ShooterSub.shoot(Robot.oi.getXbox2().getTriggerAxis(Hand.kRight)*.7);
         Robot.ShooterSub.index(Robot.oi.getXbox2().getY(Hand.kLeft)*.75);
-        if (Robot.oi.getXbox2().getBButtonPressed()) {
+        if (Robot.oi.getXbox2().getYButtonPressed()) {
             Robot.ShooterSub.tiltUp();
         }
-        if (Robot.oi.getXbox2().getXButtonPressed()) {
+        else if (Robot.oi.getXbox2().getBButtonPressed()) {
             Robot.ShooterSub.tiltDown();
+        }
+        else if (Robot.oi.getXbox2().getAButton()) {
+            if (delayCount == 0){
+                Robot.ShooterSub.setSpeed(4250.0);
+                delayCount = 40;
+            }
+            else if (delayCount == 1){
+                Robot.ShooterSub.index(.75);
+                Robot.ShooterSub.tiltDown();
+            }
+        }
+        if (delayCount > 0){
+            delayCount--;
         }
     }
 

@@ -9,6 +9,8 @@ import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.AnalogPotentiometer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -16,47 +18,52 @@ public class IntakeSubsystem extends Subsystem {
     DoubleSolenoid ArmOne;
     Solenoid ArmTwo;
     WPI_TalonSRX intakeMotor;
+    AnalogPotentiometer potentiometer;
     int count;
+    private boolean positionMode;
+    private double position;
 
     public IntakeSubsystem() {
         ArmOne = new DoubleSolenoid(RobotMap.PCM, RobotMap.ArmDoubleA, RobotMap.ArmDoubleB);
         ArmTwo = new Solenoid(RobotMap.ArmB);
         intakeMotor = new WPI_TalonSRX(RobotMap.intakeM);
+        potentiometer = new AnalogPotentiometer(3, 270, -45);
 
     }
 
     public void Up() {
-        //count = 0;
+        MoveUp();
+        positionMode = false;
+    }
+
+    public void Down() {
+        MoveDown();
+        positionMode = false;
+    }
+
+    private void MoveUp() {
         ArmOne.set(Value.kReverse);
         ArmTwo.set(true);
     }
 
-    public void Down() {
-        //count = 0;
+    private void MoveDown() {
         ArmOne.set(Value.kForward);
+        ArmTwo.set(true);
     }
 
     public void Hold() {
-        //count = 0;
+        // count = 0;
         ArmOne.set(Value.kReverse);
         ArmTwo.set(false);
     }
 
-    // public void GoTo() {
-    //     if (Robot.potentiometer.get() < 2.5) {
-    //         while (Robot.potentiometer.get() < 2.5) 
-    //             Up();
-                
-    //     }
-    //     else if (Robot.potentiometer.get() > 2.5) {
-    //         while (Robot.potentiometer.get() > 2.5 )
-    //             Down();
-    //     }
-    //     Hold();
-    // }
+    public void GoTo(double x) {
+        positionMode = true;
+        position = x;
+    }
 
     public void Turn(double x) {
-		intakeMotor.set(x);
+        intakeMotor.set(x);
     }
 
     @Override
@@ -66,10 +73,26 @@ public class IntakeSubsystem extends Subsystem {
 
     @Override
     public void periodic() {
-        // Put code here to be run every loop
-        // count++;
-        // if (count >= 25)
-        //     ArmOne.set(Value.kOff);
+        double value;
+        double lowerPosition;
+        double upperPosition;
+
+        if (positionMode) {
+            lowerPosition = position - 10;
+            upperPosition = position + 10;
+            value = potentiometer.get();
+            SmartDashboard.putNumber("Potentiometer Value", value);
+            if (value < lowerPosition) {
+                MoveUp();
+                System.out.println("Move Up");
+            } else if (value > upperPosition) {
+                MoveDown();
+                System.out.println("Move Down");
+            } else {
+                Hold();
+                System.out.println("Hold");
+            }
+        }
 
     }
 }
