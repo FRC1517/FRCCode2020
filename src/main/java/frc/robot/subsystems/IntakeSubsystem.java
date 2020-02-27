@@ -6,7 +6,6 @@ import frc.robot.commands.IntakeCommand;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
@@ -28,7 +27,7 @@ public class IntakeSubsystem extends Subsystem {
         ArmTwo = new Solenoid(RobotMap.ArmB);
         intakeMotor = new WPI_TalonSRX(RobotMap.intakeM);
         potentiometer = new AnalogPotentiometer(3, 270, -45);
-
+        positionMode = false;
     }
 
     public void Up() {
@@ -84,13 +83,10 @@ public class IntakeSubsystem extends Subsystem {
             SmartDashboard.putNumber("Potentiometer Value", value);
             if (value < lowerPosition) {
                 MoveUp();
-                System.out.println("Move Up");
             } else if (value > upperPosition) {
                 MoveDown();
-                System.out.println("Move Down");
             } else {
                 Hold();
-                System.out.println("Hold");
             }
         }
 

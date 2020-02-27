@@ -27,8 +27,6 @@ public class IntakeCommand extends Command {
 			Robot.IntakeSub.GoTo(45);
 		else if (Robot.oi.getXbox1().getAButtonPressed())
 			Robot.IntakeSub.Up();
-		//Robot.IntakeSub.Turn(-Robot.oi.getXbox1().getTriggerAxis(Hand.kLeft));
-		//if (Robot.oi.getXbox1().getTriggerAxis(Hand.kRight) > 0)
 		Robot.IntakeSub.Turn(Robot.oi.getXbox1().getTriggerAxis(Hand.kRight));
 
 

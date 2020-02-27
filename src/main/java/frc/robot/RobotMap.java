@@ -30,7 +30,7 @@ public class RobotMap {
 	public static final int RBSpark = 4;
 	
 	public static final int intakeM = 5;
-	public static final int shooterM = 8;
+	public static final int shooterM = 6;
 	public static final int indexM = 7;
 
 	public static final int tilterS = 9;

@@ -26,13 +26,9 @@ public class ShooterSubsystem extends Subsystem {
     public ShooterSubsystem() {
         shooterMotor = new CANSparkMax(RobotMap.shooterM, MotorType.kBrushless);
         shooterMotor.setInverted(true);
-
         indexMotor = new WPI_TalonSRX(RobotMap.indexM);
-
         tilter = new Servo(RobotMap.tilterS);
-
         shooterMotor.restoreFactoryDefaults();
-
         pidControllerShooter = shooterMotor.getPIDController();
 
         // Encoder object created to display position values
@@ -43,7 +39,7 @@ public class ShooterSubsystem extends Subsystem {
         kI = 0;
         kD = 0; 
         kIz = 0; 
-        kFF = 0.000015; 
+        kFF = 0.0001100; 
         kMaxOutput = 1; 
         kMinOutput = -1;
         maxRPM = 5700;
@@ -116,6 +112,6 @@ public class ShooterSubsystem extends Subsystem {
     @Override
     public void periodic() {
         // Put code here to be run every loop
-
+        SmartDashboard.putNumber("Motor", encoderShooter.getVelocity());
     }
 }

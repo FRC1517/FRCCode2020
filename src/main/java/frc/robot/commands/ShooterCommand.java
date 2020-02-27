@@ -26,7 +26,7 @@ public class ShooterCommand extends Command {
     
     @Override
     protected void execute() {
-        Robot.ShooterSub.shoot(Robot.oi.getXbox2().getTriggerAxis(Hand.kRight)*.7);
+        Robot.ShooterSub.shoot(Robot.oi.getXbox2().getTriggerAxis(Hand.kRight)*.6);
         Robot.ShooterSub.index(Robot.oi.getXbox2().getY(Hand.kLeft)*.75);
         if (Robot.oi.getXbox2().getYButtonPressed()) {
             Robot.ShooterSub.tiltUp();
@@ -36,16 +36,24 @@ public class ShooterCommand extends Command {
         }
         else if (Robot.oi.getXbox2().getAButton()) {
             if (delayCount == 0){
-                Robot.ShooterSub.setSpeed(4250.0);
-                delayCount = 40;
+                Robot.ShooterSub.setSpeed(-4250.0);
+                delayCount = 100;
             }
             else if (delayCount == 1){
                 Robot.ShooterSub.index(.75);
                 Robot.ShooterSub.tiltDown();
             }
         }
+        else {
+            Robot.ShooterSub.setSpeed(0);
+            Robot.ShooterSub.index(0);
+            Robot.ShooterSub.tiltUp();
+        }
         if (delayCount > 0){
             delayCount--;
+        }
+        else if (delayCount == 0) {
+            Robot.ShooterSub.shoot(Robot.oi.getXbox2().getTriggerAxis(Hand.kRight)*.6);
         }
     }
 
