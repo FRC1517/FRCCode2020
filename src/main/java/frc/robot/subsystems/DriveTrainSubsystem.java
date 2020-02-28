@@ -73,16 +73,6 @@ public class DriveTrainSubsystem extends Subsystem {
         left = new SpeedControllerGroup(leftFront, leftBack);
         addChild("Left", left);
 
-        rightFront.restoreFactoryDefaults();
-        rightBack.restoreFactoryDefaults();
-        leftFront.restoreFactoryDefaults();
-        leftBack.restoreFactoryDefaults();
-        
-        rightFront.setOpenLoopRampRate(.75);
-        leftFront.setOpenLoopRampRate(.75);
-        rightBack.setOpenLoopRampRate(.75);
-        leftBack.setOpenLoopRampRate(.75);
-
         mRobotDrive = new DifferentialDrive(left, right);
         addChild("Differential Drive", mRobotDrive);
         mRobotDrive.setSafetyEnabled(false);

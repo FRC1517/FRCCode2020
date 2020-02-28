@@ -24,7 +24,7 @@ public class DriveTrainCommand extends Command {
     protected void execute() {
         Robot.DriveSub.arcadeDrive(Robot.oi.getXbox1().getY(Hand.kLeft), -Robot.oi.getXbox1().getX(Hand.kLeft));
         if (Robot.oi.getXbox1().getBumper(Hand.kLeft))
-            Robot.DriveSub.arcadeDrive(Robot.oi.getXbox1().getY(Hand.kLeft) * .5, -Robot.oi.getXbox1().getX(Hand.kLeft) * .5);
+            Robot.DriveSub.arcadeDrive(Robot.oi.getXbox1().getY(Hand.kLeft) * .65, -Robot.oi.getXbox1().getX(Hand.kLeft) * .65);
     }
 
     // Make this return true when this Command no longer needs to run execute()

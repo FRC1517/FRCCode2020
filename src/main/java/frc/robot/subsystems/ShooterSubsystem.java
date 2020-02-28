@@ -71,7 +71,7 @@ public class ShooterSubsystem extends Subsystem {
     }
 
     public void tiltUp() {
-        tilter.set(0.6);
+        tilter.set(0.5);
     }
 
     public void tiltDown() {
@@ -100,8 +100,8 @@ public class ShooterSubsystem extends Subsystem {
 
           pidControllerShooter.setReference(setPoint, ControlType.kVelocity);
           
-          SmartDashboard.putNumber("SetPoint", setPoint);
-          SmartDashboard.putNumber("ProcessVariable", encoderShooter.getVelocity());
+        // SmartDashboard.putNumber("SetPoint", setPoint);
+        // SmartDashboard.putNumber("ProcessVariable", encoderShooter.getVelocity());
     }
 
     @Override
@@ -112,6 +112,6 @@ public class ShooterSubsystem extends Subsystem {
     @Override
     public void periodic() {
         // Put code here to be run every loop
-        SmartDashboard.putNumber("Motor", encoderShooter.getVelocity());
+        //SmartDashboard.putNumber("Motor", encoderShooter.getVelocity());
     }
 }

@@ -21,6 +21,7 @@ public class IntakeSubsystem extends Subsystem {
     int count;
     private boolean positionMode;
     private double position;
+    private int lastAction;
 
     public IntakeSubsystem() {
         ArmOne = new DoubleSolenoid(RobotMap.PCM, RobotMap.ArmDoubleA, RobotMap.ArmDoubleB);
@@ -28,6 +29,7 @@ public class IntakeSubsystem extends Subsystem {
         intakeMotor = new WPI_TalonSRX(RobotMap.intakeM);
         potentiometer = new AnalogPotentiometer(3, 270, -45);
         positionMode = false;
+        lastAction = 0;
     }
 
     public void Up() {
@@ -77,16 +79,22 @@ public class IntakeSubsystem extends Subsystem {
         double upperPosition;
 
         if (positionMode) {
-            lowerPosition = position - 10;
+            lowerPosition = position - 5;
             upperPosition = position + 10;
             value = potentiometer.get();
             SmartDashboard.putNumber("Potentiometer Value", value);
-            if (value < lowerPosition) {
+            if ((value < lowerPosition + 5) && (lastAction == 1)) {}
+            else if (value < lowerPosition) {
                 MoveUp();
-            } else if (value > upperPosition) {
+                lastAction = 1;
+            } 
+            else if (value > upperPosition) {
                 MoveDown();
-            } else {
+                lastAction = -1;
+            } 
+            else {
                 Hold();
+                lastAction = 0;
             }
         }
 

@@ -8,18 +8,12 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 
-
 package frc.robot.commands;
-import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Robot;
-import frc.robot.RobotMap;
+
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
-import com.revrobotics.ControlType;
-
-//import frc.robot.Robot;
+import frc.robot.Robot;
 
 /**
  *
@@ -52,18 +46,21 @@ public class AutonomousCommand extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
+        //NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(1);
         Robot.DriveSub.arcadeDrive(.3, 0);
         Robot.ShooterSub.setSpeed(-4250);
-        Timer.delay(2);
+        Timer.delay(2.0);
         Robot.DriveSub.arcadeDrive(0, 0);
         Robot.ShooterSub.setSpeed(-4250.0);
         Robot.ShooterSub.tiltDown();
         Robot.ShooterSub.index(.75);
-        Timer.delay(10.0);
+        Timer.delay(7.0);
         Robot.ShooterSub.setSpeed(0.0);
         Robot.ShooterSub.index(0.0);
-        Robot.ShooterSub.tiltUp(); 
-    }
+        Robot.ShooterSub.tiltUp();
+        Robot.IntakeSub.Down();
+        //NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(0);
+        }
 
     // Make this return true when this Command no longer needs to run execute()
     @Override

@@ -6,6 +6,8 @@ import frc.robot.Robot;
 
 public class LiftCommand extends Command {
 
+	private boolean canLift;
+
 	public LiftCommand() {
 		super();
 		// Use requires() here to declare subsystem dependencies
@@ -17,16 +19,21 @@ public class LiftCommand extends Command {
 	@Override
 	protected void initialize() {
 		Robot.LiftSub.Down();
+		canLift = false;
 	}
 	
     @Override
     protected void execute() {
-		if (Robot.oi.getXbox2().getBumperPressed(Hand.kRight)) {
-			Robot.LiftSub.Up();
+		if (Robot.oi.getXbox1().getStartButtonPressed())
+			canLift = true;
+		else if (canLift) {
+			if (Robot.oi.getXbox2().getBumperPressed(Hand.kRight)) {
+				Robot.LiftSub.Up();
+			}
+			else if (Robot.oi.getXbox2().getBumperPressed(Hand.kLeft)) {
+				Robot.LiftSub.Down();
+			}
 		}
-		else if (Robot.oi.getXbox2().getBumperPressed(Hand.kLeft)) {
-			Robot.LiftSub.Down();
-        }
     }
     @Override
     protected boolean isFinished() {
