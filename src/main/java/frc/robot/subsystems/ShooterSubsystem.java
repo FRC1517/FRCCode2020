@@ -13,13 +13,11 @@ import com.revrobotics.ControlType;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class ShooterSubsystem extends Subsystem {
     CANSparkMax shooterMotor;
     WPI_TalonSRX indexMotor;
-    Servo tilter;
     private CANPIDController pidControllerShooter;
     //private CANEncoder encoderShooter;
     public double kP, kI, kD, kIz, kFF, kMaxOutput, kMinOutput, maxRPM;
@@ -28,7 +26,6 @@ public class ShooterSubsystem extends Subsystem {
         shooterMotor = new CANSparkMax(RobotMap.shooterM, MotorType.kBrushless);
         shooterMotor.setInverted(true);
         indexMotor = new WPI_TalonSRX(RobotMap.indexM);
-        tilter = new Servo(RobotMap.tilterS);
         shooterMotor.restoreFactoryDefaults();
         pidControllerShooter = shooterMotor.getPIDController();
 
@@ -69,14 +66,6 @@ public class ShooterSubsystem extends Subsystem {
 
     public void index(double x) {
         indexMotor.set(x);
-    }
-
-    public void tiltUp() {
-        tilter.set(0.5);
-    }
-
-    public void tiltDown() {
-        tilter.set(1.0);
     }
 
     public void setSpeed(double setPoint) {

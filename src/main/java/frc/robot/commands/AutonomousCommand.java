@@ -40,7 +40,6 @@ public class AutonomousCommand extends Command {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
-        Robot.ShooterSub.tiltUp();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -52,13 +51,11 @@ public class AutonomousCommand extends Command {
         Timer.delay(2.0);
         Robot.DriveSub.arcadeDrive(0, 0);
         Robot.ShooterSub.setSpeed(-4250.0);
-        Robot.ShooterSub.tiltDown();
         Robot.ShooterSub.index(.75);
         Timer.delay(9.0);
         Robot.IntakeSub.Down();
         Robot.ShooterSub.setSpeed(0.0);
         Robot.ShooterSub.index(0.0);
-        Robot.ShooterSub.tiltUp();
         //NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(0);
         }
 
