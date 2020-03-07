@@ -12,6 +12,7 @@ import com.revrobotics.CANPIDController;
 import com.revrobotics.ControlType;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -20,7 +21,7 @@ public class ShooterSubsystem extends Subsystem {
     WPI_TalonSRX indexMotor;
     Servo tilter;
     private CANPIDController pidControllerShooter;
-    private CANEncoder encoderShooter;
+    //private CANEncoder encoderShooter;
     public double kP, kI, kD, kIz, kFF, kMaxOutput, kMinOutput, maxRPM;
 
     public ShooterSubsystem() {
@@ -32,7 +33,7 @@ public class ShooterSubsystem extends Subsystem {
         pidControllerShooter = shooterMotor.getPIDController();
 
         // Encoder object created to display position values
-        encoderShooter = shooterMotor.getEncoder();
+        //encoderShooter = shooterMotor.getEncoder();
     
         // PID coefficients
         kP = 0; 
@@ -63,7 +64,7 @@ public class ShooterSubsystem extends Subsystem {
     }
 
     public void shoot(double x) {
-	    shooterMotor.set(-x);
+        shooterMotor.set(-x);
     }
 
     public void index(double x) {

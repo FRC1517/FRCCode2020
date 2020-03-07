@@ -54,11 +54,11 @@ public class AutonomousCommand extends Command {
         Robot.ShooterSub.setSpeed(-4250.0);
         Robot.ShooterSub.tiltDown();
         Robot.ShooterSub.index(.75);
-        Timer.delay(7.0);
+        Timer.delay(9.0);
+        Robot.IntakeSub.Down();
         Robot.ShooterSub.setSpeed(0.0);
         Robot.ShooterSub.index(0.0);
         Robot.ShooterSub.tiltUp();
-        Robot.IntakeSub.Down();
         //NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(0);
         }
 
